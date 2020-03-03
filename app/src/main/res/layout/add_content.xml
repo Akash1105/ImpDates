@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Dates Here..."
+        android:gravity="center"
+        android:textSize="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Who do you want to remember?"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What's the date?"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="dd/mm/yyyy"
+        android:textSize="20dp"
+        android:clickable="true"
+        android:focusable="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:id="@+id/occasionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What's the occasion?"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"/>
+
+    <EditText
+        android:id="@+id/occasionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="occasion"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="9dp"
+        />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remind me?"
+        android:textSize="20dp"
+        android:checked="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="9dp"
+        android:onClick="toRemind"
+        />
+
+
+    <TextView
+        android:id="@+id/FrequencyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How often you need reminder ?"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:visibility="invisible"
+        />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"
+        android:visibility="invisible"
+        android:id="@+id/radioGroup1"
+        >
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Every Day"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="9dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="One month before"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="9dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="One week before"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="9dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="One day before"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="9dp"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add'em all !!"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        />
+
+
+</LinearLayout>
+</ScrollView>
