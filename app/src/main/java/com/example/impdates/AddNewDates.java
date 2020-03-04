@@ -34,6 +34,7 @@ public class AddNewDates extends Activity implements View.OnClickListener {
     TextView frequencyTV;
     CheckBox ch1;
     final Calendar myCalendar = Calendar.getInstance();
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,9 +88,9 @@ public class AddNewDates extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users");
+       // DatabaseReference myRef = database.getReference("users");
         String namee = name.getText().toString();
-        myRef.push().setValue(namee);
+//        myRef.push().setValue(namee);
         myRef = database.getReference("users").child(namee);
        // myRef.child("name").setValue(name.getText());
         myRef.child("dob").setValue(dateet.getText().toString());

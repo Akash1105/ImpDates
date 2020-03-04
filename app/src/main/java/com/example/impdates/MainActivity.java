@@ -1,5 +1,6 @@
 package com.example.impdates;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,10 +18,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference reference;
     MyListAdapter adapter;
+    Handler mHandler;
+    ProgressBar progressBar;
     List<MyListData> plist;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         FloatingActionButton fab = findViewById(R.id.fab);
         FloatingActionButton fab1 = findViewById(R.id.fab1);
+        progressBar = findViewById(R.id.progressBar);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 //        };
 
 
-        reference = FirebaseDatabase.getInstance().getReference().child("users");
+        reference = FirebaseDatabase.getInstance().getReference("users");
         reference.keepSynced(true);
 
         recyclerView.setHasFixedSize(true);
@@ -74,29 +82,28 @@ public class MainActivity extends AppCompatActivity {
         plist = new ArrayList<>();
 
 
-        reference = FirebaseDatabase.getInstance().getReference("users");
-        reference.addValueEventListener(new ValueEventListener() {
+        //reference = FirebaseDatabase.getInstance().getReference("users");
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot npsnapshot : dataSnapshot.getChildren()) {
-                        MyListData l = npsnapshot.getValue(MyListData.class);
-                        plist.add(l);
+            public void run() {
+                // This method will be executed once the timer is over
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        getdate(dataSnapshot);
                     }
-                    adapter = new MyListAdapter(plist);
-                    recyclerView.setAdapter(adapter);
 
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                progressBar.setVisibility(View.INVISIBLE);
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
+        }, 3000);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,5 +132,17 @@ public class MainActivity extends AppCompatActivity {
         return super.dispatchPopulateAccessibilityEvent(event);
     }
 
+    void getdate(DataSnapshot dataSnapshot) {
+        if (dataSnapshot.exists()) {
+            for (DataSnapshot npsnapshot : dataSnapshot.getChildren()) {
+                Log.d("looping", "hi" + dataSnapshot.getChildrenCount());
+                MyListData l = npsnapshot.getValue(MyListData.class);
+                plist.add(l);
+            }
+            adapter = new MyListAdapter(plist);
+            recyclerView.setAdapter(adapter);
+
+        }
+    }
 
 }
